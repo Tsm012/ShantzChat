@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QStringListModel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -22,5 +23,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    QStringListModel *model;
+    QStringList data;
 };
 #endif // MAINWINDOW_H

@@ -1,12 +1,16 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include <QStringListModel>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    model = new QStringListModel(this);
+    data << "Item 1";
+    model->setStringList(data);
+    ui->listView->setModel(model);
 }
 
 MainWindow::~MainWindow()
@@ -16,10 +20,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    QStringList data;
-    data << "Item 1" << "Item 2" << "Item 3" << "Item 4" << "Item 5";
-    auto model = new QStringListModel(this);
+    data << "Item 2";
     model->setStringList(data);
-    ui->listView->setModel(model);
 }
 
