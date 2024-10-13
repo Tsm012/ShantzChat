@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QStringListModel>
+#include "httpclient.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -20,10 +21,13 @@ public:
 
 private slots:
     void on_pushButton_clicked();
+    void handleRequestResult(const QString& result);
+
 
 private:
     Ui::MainWindow *ui;
     QStringListModel *model;
     QStringList data;
+    HttpClient* httpClient;  // New HttpClient member
 };
 #endif // MAINWINDOW_H

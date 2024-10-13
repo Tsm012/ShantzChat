@@ -9,6 +9,11 @@ MainWindow::MainWindow(QWidget *parent)
     data.append("Weclome To Shantz Chat");
     model->setStringList(data);
     ui->listView->setModel(model);
+
+
+    // Initialize HttpClient
+    httpClient = new HttpClient(this);
+    connect(httpClient, &HttpClient::requestFinished, this, &MainWindow::handleRequestResult);
 }
 
 MainWindow::~MainWindow()
@@ -18,6 +23,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    data.append(ui->textEdit->toPlainText());
+    QUrl url("http://www.google.com");
+    httpClient->sendGetRequest(url);
+}
+
+
+void MainWindow::handleRequestResult(const QString& result)
+{
+    // Display the result of the HTTP request in the textEdit
+    data.append(result);
     model->setStringList(data);
 }
